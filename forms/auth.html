@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="../style/style.css" rel="stylesheet">
+    <title>Authorize</title>
+</head>
+<body>
+    <div class="box">
+        <form class="authorize-form" action="../index.php" method="post" name="authorize">
+            <div class="form-field email">
+                <label for="email">
+                    <input type="email" name="email" placeholder="E-mail" required>
+                </label>
+            </div>
+            <div class="form-field password">
+                <label for="password">
+                    <input type="password" name="password" placeholder="Password" required>
+                </label>
+            </div>
+            <div class="form-field btn-submit">
+                <label for="submit">
+                    <button class="btn" type="submit" name="submit">
+                        <p class="btn-text">Sign in</p>
+                    </button>
+                </label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

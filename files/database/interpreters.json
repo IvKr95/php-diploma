@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Сидорова Сидора",
+        "id": 1,
+        "knowledge": [
+            "RU-EN"
+        ],
+        "isFree": true
+    },
+    {
+        "name": "Петрович Петр",
+        "id": 2,
+        "knowledge": [
+            "RU-EN",
+            "RU-FR"
+        ],
+        "isFree": true
+    },
+    {
+        "name": "Иванов Иван",
+        "id": 3,
+        "knowledge": [
+            "RU-DE",
+            "RU-IT"
+        ],
+        "isFree": true
+    }
+]
