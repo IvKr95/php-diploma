@@ -2,11 +2,9 @@
 
 require_once 'autoload.php';
 require_once 'config/Config.php';
+$users = require_once './users.php';
 
-$users = [
-    'manager@mail.com' => 'manager',
-    'interpreter@mail.ru' => 'interpreter'
-];
+const MANAGER = 'manager@mail.com';
 
 function isExist($users)
 {
@@ -14,11 +12,12 @@ function isExist($users)
 
         $login = trim($_POST['email']);
         $pass = trim($_POST['password']);
-    
-        if ($login === 'manager@mail.com' && $users[$login] === $pass) {
+        
+        if ($login === MANAGER && $pass === $users[$login]) {
             header('Location: ./pages/manager.php');
-        } elseif ($login === 'interpreter@mail.ru' && $users[$login] === $pass) {
-            header('Location: ./pages/interpreter.php');
+        } elseif (array_key_exists($login, $users) && $users[$login] === $pass) {
+            preg_match('/^\w+/', $login, $matches);
+            header("Location: ./pages/$matches[0].php");
         } else {
             throw new Exception('User Not Exist');
         };
