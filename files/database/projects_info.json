@@ -1,0 +1,26 @@
+[
+    {
+        "project1": {
+            "interpreter": "Сидорова Сидора",
+            "client": "ООО \"Роман и командные практики\"",
+            "deadline": "10/10/2019",
+            "initial-lang": "Russian",
+            "target-lang": ["English"],
+            "init-lang_text": "file-path",
+            "target-lang_text": ["file-path1", "file-path2"],
+            "status": "new"
+        }
+    },
+    {
+        "project2": {
+            "interpreter": "Петрович Петр",
+            "client": "ООО \"Роман и командные практики\"",
+            "deadline": "10/10/2019",
+            "initial-lang": "Russian",
+            "target-lang": ["English", "French"],
+            "init-lang_text": "file-path",
+            "target-lang_text": ["file-path"],
+            "status": "done"
+        } 
+    }
+]
