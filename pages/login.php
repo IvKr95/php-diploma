@@ -8,11 +8,23 @@
     <title>Authorize</title>
 </head>
 <body>
-    <div class="box">
-        <form class="authorize-form" action="../index.php" method="post" name="authorize">
+    <div class="modal">
+        <?php
+
+            if (isset($_GET['error'])) {
+
+                if ($_GET['error'] === 'emptyfields') {
+                    echo '<p>Fill in all fields!</p>';
+                } elseif ($_GET['error'] === 'wrong_email_or_password') {
+                    echo '<p>Wrong credentials!</p>';
+                };
+            };
+
+        ?>
+        <form enctype="multipart/form-data" class="login-form" action="../login.inc.php" method="post" name="login">
             <div class="form-field email">
                 <label for="email">
-                    <input type="email" name="email" placeholder="E-mail" required>
+                    <input type="text" name="email" placeholder="E-mail" required>
                 </label>
             </div>
             <div class="form-field password">
@@ -21,13 +33,12 @@
                 </label>
             </div>
             <div class="form-field btn-submit">
-                <label for="submit">
-                    <button class="btn" type="submit" name="submit">
-                        <p class="btn-text">Sign in</p>
-                    </button>
-                </label>
+                <button class="btn" type="submit" name="submit">
+                    <p class="btn-text">Sign in</p>
+                </button>
             </div>
         </form>
     </div>
 </body>
 </html>
+

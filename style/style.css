@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-.box {
+.modal {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,7 +15,7 @@ body {
     height: 100%;
 }
 
-.authorize-form {
+.login-form {
     height: auto;
     width: auto;
     border: 1px solid black;
