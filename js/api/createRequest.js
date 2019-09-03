@@ -51,6 +51,5 @@ function modifyURL(options) {
     for (const key in options.data) {
         modifiedURL += key + '=' + options.data[key] + '&';
     };
-
     return modifiedURL;
 };

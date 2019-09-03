@@ -6,4 +6,4 @@
 class Page extends Entity {
 }
 
-Page.URL = '/classes/ProjectsPage.php';
+Page.URL = '/page.php';

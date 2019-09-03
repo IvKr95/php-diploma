@@ -8,13 +8,13 @@ class Entity {
     /**
      * Запрашивает с сервера список проектов.
      * */
-    static list( data, callback = f => f ) {
+    static list (data, callback = f => f) {
       return createRequest({
         url: this.HOST + this.URL,
         data,
         method: 'GET',
         responseType: 'json',
-        callback(e, response) {
+        callback (e, response) {
           if (e === null && response) {
             callback(e, response);
           } else {
@@ -27,13 +27,13 @@ class Entity {
     /**
      * Создаёт заявку на перевод
      * */
-    static create( data, callback = f => f ) {
+    static create (data, callback = f => f) {
       return createRequest({
         url: this.HOST + this.URL,
         data,
         method: 'POST',
         responseType: 'json',
-        callback(e, response) {
+        callback (e, response) {
           if (e === null && response) {
             callback(e, response);
           } else {
@@ -44,15 +44,15 @@ class Entity {
     }
   
     /**
-     * Получает информацию о переводчике
+     * Получает информацию о переводчике или проекте
      * */
-    static get( path, data, callback = f => f ) {
+    static get (data, callback = f => f) {
       return createRequest({
-        url: this.HOST + this.URL + path,
+        url: this.HOST + this.URL,
         data,
         method: 'GET',
         responseType: 'json',
-        callback(e, response) {
+        callback (e, response) {
           if (e === null && response) {
             callback(e, response);
           } else {
@@ -65,13 +65,13 @@ class Entity {
     /**
      * Обновляет информацию о проекте или переводчике
      * */
-    static update( path, data, callback = f => f ) {
+    static update (data, callback = f => f) {
       return createRequest({
-        url: this.HOST + this.URL + path,
+        url: this.HOST + this.URL,
         data,
-        method: 'GET',
+        method: 'POST',
         responseType: 'json',
-        callback(e, response) {
+        callback (e, response) {
           if (e === null && response) {
             callback(e, response);
           } else {
@@ -84,7 +84,7 @@ class Entity {
     /**
      * Удаляет информацию о проекте
      * */
-    static remove(id, callback = f => f) {
+    static remove (id, callback = f => f) {
       const data = JSON.stringify({
         'action' : 'delete',
         'id' : id
@@ -95,7 +95,7 @@ class Entity {
         data,
         method: 'POST',
         responseType: 'json',
-        callback(e, response) {
+        callback (e, response) {
           if (e === null && response) {
             callback(e, response);
           } else {

@@ -12,22 +12,19 @@ class AsyncForm {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor( element ) {
-    if (element === undefined) {
-      console.error(`An element is not passed to the AsyncForm constructor!`);
-    } else {
+  constructor (element) {
+    if (element) {
       this.element = element;
+      this.submit = this.submit.bind(this);
+      this.registerEvents();
     };
-
-    this.submit = this.submit.bind(this);
-    this.registerEvents();
   }
 
   /**
    * Необходимо запретить отправку форму и в момент отправки
    * вызывает метод submit()
    * */
-  registerEvents() {
+  registerEvents () {
     this.element.addEventListener('submit', this.submit);
   }
 
@@ -38,18 +35,18 @@ class AsyncForm {
    *  'название поля формы 2': 'значение поля формы 2'
    * }
    * */
-  getData() {
+  getData () {
     return new FormData(this.element);
   }
 
-  onSubmit( options ) {
+  onSubmit (options) {
   }
 
   /**
    * Вызывает метод onSubmit и передаёт туда
    * данные, полученные из метода getData()
    * */
-  submit(e) {
+  submit (e) {
     this.onSubmit(this.getData());
     e.preventDefault();
   }

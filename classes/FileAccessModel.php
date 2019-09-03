@@ -43,12 +43,36 @@ class FileAccessModel
 
     public function write(string $content): void
     {
-        $this->connect('a');
+        $this->connect('w');
 
         if (is_writable($this->fileName)) {
             fwrite($this->file, $content);
         };
 
         $this->disconnect();
+    }
+
+    public static function deleteDir(string $project)
+    {
+        $dirPath = __DIR__ . '/../' . Config::PROJECTS_PATH . $project;
+
+        if (is_dir($dirPath)) {
+            $files = scandir($dirPath);
+        } else {
+            throw new Exception('Not Directory');
+        };
+        
+        foreach ($files as $key => $file) {
+            if (($file !== '.') && ( $file !== '..' )) {
+                $full = $dirPath . '/' . $file;
+                if (is_dir($full)) {
+                    rmdir($full);
+                } else {
+                    unlink($full);
+                };
+            };
+        };
+
+        rmdir($dirPath);
     }
 };

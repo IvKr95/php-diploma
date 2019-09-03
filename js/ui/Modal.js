@@ -13,18 +13,14 @@ class Modal {
      * необходимо выкинуть ошибку.
      * */
     constructor(element) {
-      if (element === undefined) {
-        console.error(`An element is not passed to the Modal constructor!`);
-      } else {
+      if (element) {
         this.element = element;
+        this.closeBtns = this.element.querySelectorAll('.close-btn');
+        this.onClose = this.onClose.bind(this);
+        this.close = this.close.bind(this);
+    
+        this.registerEvents();
       };
-  
-      this.closeBtns = this.element.querySelectorAll('.close-btn');
-  
-      this.onClose = this.onClose.bind(this);
-      this.close = this.close.bind(this);
-  
-      this.registerEvents();
     }
   
     /**

@@ -5,10 +5,9 @@
  * */
 class CreateProjectForm extends AsyncForm {
     /**
-     * Вызывает родительский конструктор и
-     * метод renderAccountsList
+     * Вызывает родительский конструктор
      * */
-    constructor( element ) {
+    constructor (element) {
       super(element);
     }
   
@@ -18,7 +17,7 @@ class CreateProjectForm extends AsyncForm {
      * сбрасывает форму и закрывает окно,
      * в котором находится форма
      * */
-    onSubmit( options ) {
+    onSubmit (options) {
       Project.create(options, ( e, response ) => {
         if (e === null && response) {
           App.update();

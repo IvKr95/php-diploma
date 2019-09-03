@@ -10,20 +10,17 @@ class ProjectsPage {
      * Сохраняет переданный элемент и регистрирует события
      * через registerEvents()
      * */
-    constructor(element) {
-      if (element === undefined) {
-        console.error(`An element is not passed to the ProjectsPage constructor!`);
-      } else {
+    constructor (element) {
+      if (element) {
         this.element = element;
+        this.registerEvents();
       };
-  
-      this.registerEvents();
     }
   
     /**
      * Вызывает метод render для отрисовки страницы
      * */
-    update() {
+    update () {
       this.render();
     }
   
@@ -32,13 +29,61 @@ class ProjectsPage {
      * Внутри обработчика пользуюсь
      * методом ProjectsPage.removeProject
      * */
-    registerEvents() {
-      this.element.addEventListener('click', e => {
-        if (e.target.classList.contains('btn-delete')) {
+    registerEvents () {
+      if (this.element.classList.contains('manager')) {
+
+        this.element.addEventListener('click', e => {
+
+          if (e.target.closest('li').dataset.projectStatus === 'done') return;
+
           const id = e.target.closest('li').dataset.projectId;
-          this.removeProject(id);
+  
+          if (e.target.classList.contains('btn-delete')) {
+            this.removeProject(id);
+          } else if (e.target.classList.contains('btn-edit')) {
+            this.getProject('edit', id);
+          } else {
+            this.getProject('check', id);
+          };
+  
+          e.preventDefault();
+        });
+      } else {
+        this.element.addEventListener('click', e => {
+
+          if (e.target.closest('li').dataset.projectStatus === 'done') return;
+
+          const id = e.target.closest('li').dataset.projectId;
+
+          this.getProject('translate', id);
+          e.preventDefault();
+        });
+      };
+    }
+
+    getProject (mode, id) {
+      Project.get({id}, (e, response) => {
+        console.log('check');
+        if (e === null && response) {
+
+          let modal, form; 
+
+          if (mode === 'edit') {
+
+            [modal, form] = [App.getModal('editProject'), App.getForm('editProjectForm')];
+
+          } else if (mode === 'translate') {
+
+            [modal, form] = [App.getModal('translateProject'), App.getForm('translateProjectForm')];
+
+          } else if (mode === 'check') {
+            
+            [modal, form] = [App.getModal('checkProject'), App.getForm('checkProjectForm')];
+          };
+
+          form.update(id, response);
+          modal.open();
         };
-        e.preventDefault();
       });
     }
   
@@ -48,13 +93,12 @@ class ProjectsPage {
      * По успешному удалению необходимо вызвать метод App.update()
      * для обновления приложения
      * */
-    removeProject(id) {
+    removeProject (id) {
       let result = confirm('Вы согласны удалить данный проект?');
 
       if (result) {
         Project.remove(id, (e, response) => {
           if (e === null && response) {
-            console.log('Removed!');
             App.update();
           };
         });
@@ -65,73 +109,18 @@ class ProjectsPage {
      * Получает список Project.list и полученные данные передаёт
      * в ProjectsPage.renderProjects()
      * */
-    render() {
-      Page.list({}, (e, response) => {
+    render (options = {}) {
+      Page.list(options, (e, response) => {
         if (e === null && response) {
-          console.log('Render Projects!');
           this.renderProjects(response);
         };
       });
     }
   
     /**
-     * Форматирует дату
-     * Исходный формат:
-     * Желаемый формат:
-     * */
-    formatDate(date) {
-  
-    }
-  
-    /**
-     * Формирует HTML-код проекта.
-     * item - объект с информацией о проекте
-     * */
-    getProjectHTML(item) {
-      const items = this.element.querySelectorAll('.list-item');
-
-      for (const i of items) {
-        if (i.dataset.projectId === item.id) {
-          return '';
-        };
-      };
-
-      return `<li class="list-item project" data-project-id="${item.id}" data-project-status="${item.status}">
-                <p class="list-item_text initial-lang">
-                  ${item.text}
-                </p>
-                <div class="list-item_control">
-                    <div class="btns">
-                        <button class="btn btn-edit">
-                            Edit
-                        </button>
-                        <button class="btn btn-delete">
-                            Delete
-                        </button>
-                    </div>
-                    <div class="list-item_info">
-                        <p class="deadline">${item.deadline}</p>
-                        <div class="target-lang_holder">
-                            <span class="target-lang">
-                              ${item["target-lang"].join(' ')}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>`;      
-    }
-  
-    /**
      * Отрисовывает список проектов на странице
-     * используя getProjectHTML
      * */
-    renderProjects(projects) {
-      let html = '';
-      
-      for (const project of JSON.parse(projects)) {
-        html += this.getProjectHTML(project);
-      };
-      
-      this.element.insertAdjacentHTML('beforeend', html);
+    renderProjects (projects) {
+      this.element.innerHTML = projects;
     }
 }

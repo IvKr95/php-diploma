@@ -12,23 +12,7 @@ class App {
       this.initPages();
       this.initForms();
       this.initModals();
-  
-      //this.initUser(); 
     }
-  
-    /**
-     * Извлекает информацию о текущем пользователе
-     * используя User.fetch(). В случае, если пользователь
-     * авторизован, необходимо установить состояние
-     * App.setState( 'user-logged' ).
-     * Если пользователь не авторизован, необходимо установить
-     * состояние 'init'
-     * */
-    // static initUser() {
-    //   User.fetch({}, () =>
-    //     this.setState( User.current() ? 'user-logged' : 'init' )
-    //   );
-    // }
 
     /**
      * Инициализирует единственную динамическую
@@ -36,7 +20,7 @@ class App {
      * */
     static initPages() {
         this.pages = {
-            projects : new ProjectsPage(this.content)
+            projects: new ProjectsPage(this.content)
         }
     }
   
@@ -45,7 +29,10 @@ class App {
      * */
     static initModals() {
       this.modals = {
-        createProject: new Modal(document.querySelector( '#modal-create' )),
+        createProject: new Modal(document.querySelector('#modal-create')),
+        editProject: new Modal(document.querySelector('#modal-edit')),
+        translateProject: new Modal(document.querySelector('#modal-translate')),
+        checkProject: new Modal(document.querySelector('#modal-check')),
       };
     }
   
@@ -55,6 +42,9 @@ class App {
     static initForms() {
       this.forms = {
         createProjectForm: new CreateProjectForm(document.querySelector('#new-project-form')),
+        editProjectForm: new EditProjectForm(document.querySelector('#edit-project-form')),
+        translateProjectForm: new TranslateProjectForm(document.querySelector('#translate-project-form')),
+        checkProjectForm: new CheckProjectForm(document.querySelector('#check-project-form')),
       }
     }
   
@@ -72,12 +62,29 @@ class App {
      * Возвращает страницу
      * Обращается к объекту App.pages и извлекает
      * из него свойство pageName:
-     * App.getPage( 'transactions' ); // извелекает App.pages.transactions
+     * App.getPage( 'projects' ); // извелекает App.pages.projects
      * */
     static getPage(pageName) {
       return this.pages[pageName];
     }
-  
+
+    /**
+     * Получает страницу с помощью App.getPage
+     * Вызывает у полученной страницы метод render()
+     * и передаёт туда объект options
+     * */
+    static showPage (options) {
+
+      if (options) {
+        options = {
+          interpreter: options
+        };
+      };
+      
+      const page = this.getPage('projects');
+      page.render(options);
+    }
+
     /**
      * Возвращает форму по названию
      * Обращается к объекту App.forms и извлекает
@@ -85,16 +92,6 @@ class App {
      * */
     static getForm(formName) {
       return this.forms[formName];
-    }
-  
-    /**
-     * Получает страницу с помощью App.getPage
-     * Вызывает у полученной страницы метод render()
-     * и передаёт туда объект options
-     * */
-    static showPage(pageName, options) {
-      const page = this.getPage(pageName);
-      page.render(options);
     }
 
     /**
@@ -104,7 +101,6 @@ class App {
 
     static update() {
       this.updatePages();
-        //this.updateForms();
     }
 
     /**
@@ -116,18 +112,5 @@ class App {
 
     static updatePages() {
       this.getPage('projects').update();
-    }
-
-    /**
-     * Обновляет страницы
-     * Обращается к единственной странице projects
-     * через getPage и вызывает у этой страницы
-     * метод update()
-     * */
-
-    static updateForms() {
-        //this.getForm( 'editProjectForm' ).update();
-        //this.getForm( 'checkProjectForm' ).update();
-        // this.getForm( 'translationForm' ).update();
     }
 }

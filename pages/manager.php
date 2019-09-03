@@ -1,13 +1,3 @@
-<?php
-
-session_start();
-
-require_once '../autoload.php';
-require_once '../config/Config.php';
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +12,9 @@ require_once '../config/Config.php';
         <header class="header">
             <nav class="nav">
                 <ul class="menu">
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn all">All</a>
+                    </li>
                     <li class="menu-item">
                         <button type="button" class="menu-btn new">New</a>
                     </li>
@@ -38,7 +31,7 @@ require_once '../config/Config.php';
                         <button type="button" class="menu-btn create">Create new</a>
                     </li>
                     <li class="menu-item">
-                        <button type="button" class="menu-btn exit">Exit</a>
+                        <button type="button" class="menu-btn logout">Log out</a>
                     </li>
                 </ul>
             </nav>
@@ -46,7 +39,7 @@ require_once '../config/Config.php';
 
         <main class="main">
             <section class="content">
-                <ul class="projects-list">
+                <ul class="projects-list manager">
 
                 </ul>
             </section>
@@ -163,14 +156,18 @@ require_once '../config/Config.php';
             </div>
 
             <div class="modal-body">
-                <form id="edit-project-form" action="" method="post">
+                <form enctype="multipart/form-data" class="form" id="edit-project-form" action="../classes/Project.php" method="post" novalidate>
+                    <input name="action" type="hidden" value="edit">
+                    <input class="hidden projectId" name="project-id" type="hidden" value="">
+                    <input class="status" name="status" type="hidden" value="">
+
                     <div class="form-group">
                         <label>
                             Ответственный:
-                            <select class="form-control assignment" name="assignment">
-                                <option value="sidora">Сидорова Сидора</option>
-                                <option value="petr">Петрович Петр</option>
-                                <option value="ivanov">Иванов Иван</option>
+                            <select class="form-control assignment" name="assignment" required>
+                                <option class="assignee" value="Сидорова Сидора">Сидорова Сидора</option>
+                                <option class="assignee" value="Петрович Петр">Петрович Петр</option>
+                                <option class="assignee" value="Иванов Иван">Иванов Иван</option>
                             </select>
                         </label>
                     </div>
@@ -183,70 +180,70 @@ require_once '../config/Config.php';
                     <div class="form-group">
                         <p>Язык оригинала:</p>
                         <label>
-                            <input type="radio" class="form-control radio" name="initial-lang" value="russian">
+                            <input type="radio" class="form-control radio" name="initial-lang" value="Russian">
                             Русский
                         </label>
                         <label>
-                            <input type="radio" class="form-control radio" name="initial-lang" value="english">
+                            <input type="radio" class="form-control radio" name="initial-lang" value="English">
                             Английский
                         </label>
                         <label>
-                            <input type="radio" class="form-control radio" name="initial-lang" value="german">
+                            <input type="radio" class="form-control radio" name="initial-lang" value="German">
                             Немецкий
                         </label>
                         <label>
-                            <input type="radio" class="form-control radio" name="initial-lang" value="french">
+                            <input type="radio" class="form-control radio" name="initial-lang" value="French">
                             Француский
                         </label>
                         <label>
-                            <input type="radio" class="form-control radio" name="initial-lang" value="italian">
+                            <input type="radio" class="form-control radio" name="initial-lang" value="Italian">
                             Итальянский
                         </label>
                         <label>
-                            <input type="radio" class="form-control radio" name="initial-lang" value="spanish">
+                            <input type="radio" class="form-control radio" name="initial-lang" value="Spanish">
                             Испанский
                         </label> 
                     </div>
                     <div class="form-group">
                         <p>Язык перевода:</p>
                         <label>
-                            <input type="checkbox" class="form-control checkbox" name="target-lang" value="russian">
+                            <input type="checkbox" class="form-control checkbox" name="target-lang[]" value="Russian">
                             Русский
                         </label>
                         <label>
-                            <input type="checkbox" class="form-control checkbox" name="target-lang" value="english">
+                            <input type="checkbox" class="form-control checkbox" name="target-lang[]" value="English">
                             Английский
                         </label>
                         <label>
-                            <input type="checkbox" class="form-control checkbox" name="target-lang" value="german">
+                            <input type="checkbox" class="form-control checkbox" name="target-lang[]" value="German">
                             Немецкий
                         </label>
                         <label>
-                            <input type="checkbox" class="form-control checkbox" name="target-lang" value="french">
+                            <input type="checkbox" class="form-control checkbox" name="target-lang[]" value="French">
                             Француский
                         </label>
                         <label>
-                            <input type="checkbox" class="form-control checkbox" name="target-lang" value="italian">
+                            <input type="checkbox" class="form-control checkbox" name="target-lang[]" value="Italian">
                             Итальянский
                         </label>
                         <label>
-                            <input type="checkbox" class="form-control checkbox" name="target-lang" value="spanish">
+                            <input type="checkbox" class="form-control checkbox" name="target-lang[]" value="Spanish">
                             Испанский
                         </label>
                     </div>
                     <div class="form-group">
-                        <textarea name="text" class="form-control text" cols="60" rows="50"></textarea>
+                        <textarea name="text" class="form-control initial-lang_text" cols="20" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Крайний срок
+                            <input type="text" class="form-control deadline" name="deadline" placeholder="10/10/2019">
+                        </label>
                     </div>
                 </form>
             </div>
 
             <div class="modal-footer">
-                <div class="form-group">
-                    <label>
-                        Крайний срок
-                        <input type="text" class="form-control deadline" name="deadline" placeholder="10/10/2019" form="edit-project-form" required>
-                    </label>
-                </div>
                 <button type="submit" class="form-control btn save-btn" name="save" form="edit-project-form">Save</button>
             </div>
         </div>
@@ -255,55 +252,48 @@ require_once '../config/Config.php';
     <div class="modal" id="modal-check">
 
         <div class="modal-content">
+
             <div class="modal-header">
                 <button class="btn close-btn" aria-label="Закрыть">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-        
-        <div class="modal-body">
-            <form id="check-project-form" action="" method="get">
-                <div class="form-group">
-                    <p>Язык оригинала:</p>
-                    <span class="initial-lang"></span>
-                </div>
-                <div class="form-group">
-                    <p>Языки перевода:</p>
-                    <span class="target-lang"></span>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <p>Крайний срок</p>
-                        <span></span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control initial-lang-text" name="text" cols="30" rows="20"></textarea>
-                </div>
-                <div class="form-group">
-                    <div class="lang-holder">
-                        <span></span>
-                        <textarea name="text" class="form-control target-lang-text" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="lang-holder">
-                        <span></span>
-                        <textarea name="text" class="form-control target-lang-text" cols="30" rows="10"></textarea>
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" class="form-control btn resolved-btn" name="resolved">Resolved</button>
-                </div>
-                <div>
-                    <button type="submit" class="form-control btn save-btn" name="save">Save</button>
-                </div>
-            </form>
-        </div>
 
-        <div class="modal-footer">
-            <button type="submit" class="form-control btn reject-btn" name="reject" form="check-project-form">Reject</button>
-            <button type="submit" class="form-control btn done-btn" name="done" form="check-project-form">Done</button>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" class="form" id="check-project-form" action="../classes/Project.php" method="post" novalidate>
+
+                    <input name="type" type="hidden" value="">
+                    <input name="action" type="hidden" value="check">
+                    <input class="hidden projectId" name="project-id" type="hidden" value="">
+
+                    <div class="form-group">
+                        <p>Язык оригинала:</p>
+                        <span class="lang initial-lang"></span>
+                    </div>
+                    <div class="form-group">
+                        <p>Язык перевода:</p>
+                        <span class="lang target-lang"></span>
+                    </div>
+                    <div class="form-group">
+                        <p>Крайний срок</p>
+                        <span class="deadline"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control initial-lang_text" cols="80" rows="5" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="target-lang_holder">
+                        
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="form-control btn rejected-btn" name="submit" form="check-project-form">Rejected</button>
+                <button type="submit" class="form-control btn done-btn" name="submit" form="check-project-form">Done</button>
+            </div>
         </div>
-        
     </div>
 
     <script src="../js/api/createRequest.js"></script>
@@ -316,19 +306,95 @@ require_once '../config/Config.php';
 
     <script src="../js/ui/forms/AsyncForm.js"></script>
     <script src="../js/ui/forms/CreateProjectForm.js"></script>
+    <script src="../js/ui/forms/EditProjectForm.js"></script>
+    <script src="../js/ui/forms/CheckProjectForm.js"></script>
+
+    <script src="../js/ui/forms/TranslateProjectForm.js"></script>
 
     <script src="../js/App.js"></script>
 
     <script>
         App.init();
-        App.update();
+        App.showPage();
 
-        const createBtn = document.querySelector('.create');
+        const create = document.querySelector('.create');
 
-        createBtn.addEventListener('click', e => {
+        create.addEventListener('click', e => {
+
             const modal = App.getModal('createProject');
-            const form = App.getForm('createProjectForm');
             modal.open();
+            e.preventDefault();
+        });
+
+        const elements = document.forms['check-project-form'].elements;
+        const submitBtns = [...elements.submit];
+
+        submitBtns.forEach( btn => {
+            btn.addEventListener('click', e => {
+                elements.type.value = e.target.textContent;
+            });
+        });
+
+        const btns = document.querySelectorAll('.menu-btn');
+
+        btns.forEach( btn => {
+            
+            if (btn.classList.contains('new')) {
+                
+                btn.addEventListener('click', e => {
+                    const projects = document.querySelectorAll('.project');
+                    projects.forEach( project => {
+                        if (project.dataset.projectStatus !== 'new') {
+                            project.style.display = 'none';
+                        } else {
+                            project.style.display = 'flex';
+                        }
+                    });
+                });
+            } else if (btn.classList.contains('resolved')) {
+                
+                btn.addEventListener('click', e => {
+                    const projects = document.querySelectorAll('.project');
+                    projects.forEach( project => {
+                        if (project.dataset.projectStatus !== 'resolved') {
+                            project.style.display = 'none';
+                        } else {
+                            project.style.display = 'flex';
+                        }
+                    });
+                });
+            } else if (btn.classList.contains('done')) {
+                
+                btn.addEventListener('click', e => {
+                    const projects = document.querySelectorAll('.project');
+                    projects.forEach( project => {
+                        if (project.dataset.projectStatus !== 'done') {
+                            project.style.display = 'none';
+                        } else {
+                            project.style.display = 'flex';
+                        }
+                    });
+                });
+            } else if (btn.classList.contains('rejected')) {
+                
+                btn.addEventListener('click', e => {
+                    const projects = document.querySelectorAll('.project');
+                    projects.forEach( project => {
+                        if (project.dataset.projectStatus !== 'rejected') {
+                            project.style.display = 'none';
+                        } else {
+                            project.style.display = 'flex';
+                        }
+                    });
+                });
+            } else if (btn.classList.contains('all')) {
+                btn.addEventListener('click', e => {
+                    const projects = document.querySelectorAll('.project');
+                    projects.forEach( project => {
+                        project.style.display = 'flex';
+                    });
+                });
+            };
         });
     </script>
 </body>

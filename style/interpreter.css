@@ -43,19 +43,9 @@ ul {
     margin-right: 35px;
 }
 
-.menu-btn.logout {
+.menu-item:last-child {
     float: right;
 	margin-right: 0;
-}
-
-.menu-btn.create {
-    width: 120px;
-    margin-left: 150px;
-    margin-right: 0;
-    border: 1px solid rgba(121, 121, 121, 1);
-    border-radius: 5px;
-
-    text-align: center;
 }
 
 .menu-btn {
@@ -66,7 +56,6 @@ ul {
 	cursor: pointer;
 	text-decoration: none;
 }
-
 
 .main {
     margin-top: 20px;
@@ -110,21 +99,6 @@ ul {
 .list-item_control {
     display: flex;
     flex-wrap: wrap;
-}
-
-.btns {
-    display: flex;
-    margin-bottom: 15px;
-    justify-content: space-between;
-}
-
-.btn {
-    width: 73px;
-    height: 33px;
-    background-color: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(121, 121, 121, 1);
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .list-item_info {

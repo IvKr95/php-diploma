@@ -23,3 +23,13 @@ if (isset($_POST['submit'])) {
     isValid($users);
 };
 
+
+// if (isset($_GET['error'])) {
+
+//     if ($_GET['error'] === 'emptyfields') {
+//         echo '<p>Fill in all fields!</p>';
+//     } elseif ($_GET['error'] === 'wrong_email_or_password') {
+//         echo '<p>Wrong credentials!</p>';
+//     };
+// };
+        

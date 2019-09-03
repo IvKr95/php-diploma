@@ -18,31 +18,16 @@ class JsonFileAccessModel extends FileAccessModel
 
         $this->disconnect();
 
-        $content = substr_replace($content, '', -1, 1);
-        return json_decode('[' . $content . ']');
+        return json_decode($content);
     }
 
-    public function writeJson(array $content): void
+    public function writeJson($content): void
     {
         $json = json_encode($content, JSON_PRETTY_PRINT);
 
-        $this->connect('a');
-
-        if (is_writable($this->fileName)) {
-            fwrite($this->file, $json);
-            fwrite($this->file, ',');
-        };
-
-        $this->disconnect();
-    }
-
-    public function updateJson(array $content): void
-    {
-        $json = json_encode($content, JSON_PRETTY_PRINT);
-        
         $this->connect('w');
 
-        if (is_writable($this->fileName)) {
+        if (is_writable($this->fileName)) { 
             fwrite($this->file, $json);
         };
 

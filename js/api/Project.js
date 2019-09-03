@@ -6,4 +6,4 @@
 class Project extends Entity {
 }
 
-Project.URL = '/classes/Project.php';
+Project.URL = '/project.php';
