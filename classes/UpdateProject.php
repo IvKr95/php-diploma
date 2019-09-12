@@ -1,13 +1,33 @@
 <?php
 
+/**
+ * UpdateProject class inherits
+ * all the properties and methods
+ * of Project and declares new
+ * methods to update a project
+ */
 class UpdateProject extends Project
 {
+
+    /**
+     * Updates a project
+     * @param array $newData
+     * @uses updateJson()
+     * @uses updateTxt()
+     */
     public static function update(array $newData)
     {
         self::updateJson($newData);
         self::updateTxt($newData);
     }
 
+    /**
+     * Updates the json of
+     * a project
+     * @param array $data
+     * @uses FILE_NAME
+     * @return void
+     */
     private static function updateJson(array $data): void
     {
         $modelJson = new JsonFileAccessModel(self::FILE_NAME);
@@ -23,6 +43,12 @@ class UpdateProject extends Project
         $modelJson->writeJson($projects);
     }
 
+    /**
+     * Updates the text
+     * of a project
+     * @param array $data
+     * @return void
+     */
     private static function updateTxt(array $data): void
     {
         $modelTxt = new FileAccessModel($data['project-id'], $data['project-id']);

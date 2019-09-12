@@ -1,7 +1,7 @@
 /**
- * Класс Page наследуется от Entity
- * Управляет страницей пользователя
- * Имеет свойство URL со значением '/classes/ProjectsPage.php'
+ * Page class is inhereted from Entity.
+ * Manages the page of the user.
+ * Has URL property equal to '/page.php'.
  * */
 class Page extends Entity {
 }

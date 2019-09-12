@@ -10,6 +10,11 @@ class CreateProjectForm extends AsyncForm {
     constructor (element) {
       super(element);
     }
+
+    update (data) {
+      const select = this.element.querySelector('.assignment');
+      select.innerHTML = data;
+    }
   
     /**
      * Создаёт новую проект с помощью Project.create. 

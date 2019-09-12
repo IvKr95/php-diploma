@@ -1,9 +1,9 @@
 /**
- * Класс App управляет всем приложением
+ * App class manages the whole app.
  * */
 class App {
     /**
-     * С вызова этого метода начинается работа всего приложения
+     * Initiates all the procedures in the app.
      * */
     static init() {
       this.element = document.querySelector( '.interface' );
@@ -12,11 +12,12 @@ class App {
       this.initPages();
       this.initForms();
       this.initModals();
+
+      Sidebar.init();
     }
 
     /**
-     * Инициализирует единственную динамическую
-     * страницу (для отображения проектов)
+     * Initiates the only dynamic page.
      * */
     static initPages() {
         this.pages = {
@@ -25,7 +26,7 @@ class App {
     }
   
     /**
-     * Инициализирует всплывающие окна
+     * Initiates the modal windows.
      * */
     static initModals() {
       this.modals = {
@@ -37,7 +38,7 @@ class App {
     }
   
     /**
-     * Инициализирует формы
+     * Initiates the forms.
      * */
     static initForms() {
       this.forms = {
@@ -49,67 +50,57 @@ class App {
     }
   
     /**
-     * Возвращает всплывающее окно
-     * Обращается к объекту App.modals и извлекает
-     * из него свойство modalName:
-     * App.getModal( 'createProject' ); // извелекает App.modals.createProject
+     * Returns a modal.
+     * Refers to the App.modals object
+     * and retrieves the property 'modalName':
+     * App.getModal( 'createProject' ); // gets App.modals.createProject.
      * */
     static getModal(modalName) {
       return this.modals[modalName];
     }
   
     /**
-     * Возвращает страницу
-     * Обращается к объекту App.pages и извлекает
-     * из него свойство pageName:
-     * App.getPage( 'projects' ); // извелекает App.pages.projects
+     * Returns the page.
+     * Refers to the App.pages object
+     * and retrieves the property 'pageName':
+     * App.getPage( 'projects' ); // gets App.pages.projects.
      * */
     static getPage(pageName) {
       return this.pages[pageName];
     }
 
     /**
-     * Получает страницу с помощью App.getPage
-     * Вызывает у полученной страницы метод render()
-     * и передаёт туда объект options
+     * Gets the page with the App.getPage.
+     * Calls the render() method of the fetched page.
      * */
-    static showPage (options) {
-
-      if (options) {
-        options = {
-          interpreter: options
-        };
-      };
-      
+    static showPage () {      
       const page = this.getPage('projects');
-      page.render(options);
+      page.render();
     }
 
     /**
-     * Возвращает форму по названию
-     * Обращается к объекту App.forms и извлекает
-     * из него свойство formName
+     * Returns a form by its name.
+     * Refers to App.forms object and
+     * retrieves the formName property.
      * */
     static getForm(formName) {
       return this.forms[formName];
     }
 
     /**
-     * Обновляет содержимое страниц
-     * Вызывает методы updateForms() и updatePages()
+     * Updates the page content.
+     * Calls updatePages().
      * */
-
     static update() {
       this.updatePages();
     }
 
     /**
-     * Обновляет страницы
-     * Обращается к единственной странице projects
-     * через getPage и вызывает у этой страницы
-     * метод update()
+     * Update pages.
+     * Refers to the only page 'projects'
+     * via getPage() and calls update() method
+     * of this page.
      * */
-
     static updatePages() {
       this.getPage('projects').update();
     }

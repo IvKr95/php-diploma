@@ -1,14 +1,14 @@
 /**
- * Класс ProjectsPage управляет
- * страницей отображения проектов
- * конкретного пользователя
+ * ProjectPage class manages 
+ * the projects-rendering page
+ * of a certain user
  * */
 class ProjectsPage {
     /**
-     * Если переданный элемент не существует,
-     * необходимо выкинуть ошибку.
-     * Сохраняет переданный элемент и регистрирует события
-     * через registerEvents()
+     * Error will be thrown if
+     * a passed element not exist.
+     * Saves the passed element and
+     * registers events via registerEvents()
      * */
     constructor (element) {
       if (element) {
@@ -18,23 +18,22 @@ class ProjectsPage {
     }
   
     /**
-     * Вызывает метод render для отрисовки страницы
+     * Call the render()
+     * to render the page
      * */
     update () {
       this.render();
     }
   
     /**
-     * Отслеживает нажатие на кнопку удаления проета.
-     * Внутри обработчика пользуюсь
-     * методом ProjectsPage.removeProject
+     * Registers the events for
+     * remove, delete, check and
+     * translate buttons.
      * */
     registerEvents () {
       if (this.element.classList.contains('manager')) {
 
         this.element.addEventListener('click', e => {
-
-          if (e.target.closest('li').dataset.projectStatus === 'done') return;
 
           const id = e.target.closest('li').dataset.projectId;
   
@@ -43,7 +42,9 @@ class ProjectsPage {
           } else if (e.target.classList.contains('btn-edit')) {
             this.getProject('edit', id);
           } else {
-            this.getProject('check', id);
+            if (e.target.closest('li').dataset.projectStatus !== 'new') {
+              this.getProject('check', id);
+            };            
           };
   
           e.preventDefault();
@@ -61,9 +62,16 @@ class ProjectsPage {
       };
     }
 
+    /**
+     * Retrieves a unique project by its id
+     * Uses get() method of Project's class
+     * Upon successful response updates the form
+     * and opens the modal
+     * */
+
     getProject (mode, id) {
       Project.get({id}, (e, response) => {
-        console.log('check');
+
         if (e === null && response) {
 
           let modal, form; 
@@ -88,13 +96,13 @@ class ProjectsPage {
     }
   
     /**
-     * Удаляет проект. Необходимо показать диаголовое окно (с помощью confirm())
-     * Если пользователь согласен удалить проект, вызываем Project.remove.
-     * По успешному удалению необходимо вызвать метод App.update()
-     * для обновления приложения
+     * Deletes a project. Displays a modal dialog.
+     * If positive, call the Project.remove.
+     * Upon success, call the App.update()
+     * to update the app.
      * */
     removeProject (id) {
-      let result = confirm('Вы согласны удалить данный проект?');
+      let result = confirm('Are you sure you want to delete this project?');
 
       if (result) {
         Project.remove(id, (e, response) => {
@@ -106,8 +114,8 @@ class ProjectsPage {
     }
   
     /**
-     * Получает список Project.list и полученные данные передаёт
-     * в ProjectsPage.renderProjects()
+     * Fetch a list of projects with Project.list().
+     * And passes the data to ProjectsPage.renderProjects().
      * */
     render (options = {}) {
       Page.list(options, (e, response) => {
@@ -118,7 +126,7 @@ class ProjectsPage {
     }
   
     /**
-     * Отрисовывает список проектов на странице
+     * Displays a list of projects on the page.
      * */
     renderProjects (projects) {
       this.element.innerHTML = projects;

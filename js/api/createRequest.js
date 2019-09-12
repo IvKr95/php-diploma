@@ -1,7 +1,6 @@
-
 /**
- * Основная функция для совершения запросов
- * на сервер.
+ * A function to make ajax requests to
+ * a server
  * */
 
 const createRequest = (options = {}) => {
@@ -51,5 +50,6 @@ function modifyURL(options) {
     for (const key in options.data) {
         modifiedURL += key + '=' + options.data[key] + '&';
     };
+    
     return modifiedURL;
 };

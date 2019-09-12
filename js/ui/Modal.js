@@ -1,16 +1,11 @@
 /**
- * Класс Modal отвечает за
- * управление всплывающими окнами.
- * В первую очередь это открытие или
- * закрытие имеющихся окон
+ * Modal class manages
+ * modal windows.
  * */
 class Modal {
     /**
-     * Устанавливает текущий элемент в свойство element
-     * Регистрирует обработчики событий с помощью
-     * Modal.registerEvents()
-     * Если переданный элемент не существует,
-     * необходимо выкинуть ошибку.
+     * Sets the current element to this.element.
+     * Registers the events with Modal.registerEvents().
      * */
     constructor(element) {
       if (element) {
@@ -22,28 +17,26 @@ class Modal {
         this.registerEvents();
       };
     }
-  
     /**
-     * При нажатии на элемент с .close-btn
-     * должен закрыть текущее окно
-     * (с помощью метода Modal.onClose)
+     * When element with .close-btn is clicked
+     * closes the current window
+     * (uses Modal.onClose).
      * */
     registerEvents() {
       for (const clsBtn of this.closeBtns) {
         clsBtn.addEventListener('click', this.onClose);
       };
     }
-  
     /**
-     * Срабатывает после нажатия на элементы, закрывающие окно.
-     * Закрывает текущее окно (Modal.close())
+     * Handles click events on the close elements.
+     * Closes the current element (Modal.close()).
      * */
     onClose(e) {
       this.close();
       e.preventDefault();
     }
     /**
-     * Удаляет обработчики событий
+     * Deletes event handlers
      * */
     unregisterEvents() {
       for (const clsBtn of this.closeBtns) {
@@ -51,14 +44,14 @@ class Modal {
       };
     }
     /**
-     * Открывает окно: устанавливает CSS-свойство display
-     * со значением «block»
+     * Opens a modal. Adds the 'active' class
+     * to the current element.
      * */
     open() {
       this.element.classList.add('active');
     }
     /**
-     * Закрывает окно: удаляет CSS-свойство display
+     * Closes a modal. Removes the 'acitve' class.
      * */
     close() {
       this.element.classList.remove('active');

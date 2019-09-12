@@ -1,5 +1,7 @@
 <?php
 
+
+header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 
 require_once './config/Config.php';
@@ -20,6 +22,8 @@ if (!empty($_GET)) {
             unset($_POST['action']);
             $project = new Project($_POST);
             $project->save();
+
+            
         
             echo json_encode('Successfully Created!');
 
@@ -33,7 +37,7 @@ if (!empty($_GET)) {
         } elseif ($_POST['action'] === 'translate') {
 
             if (strtolower($_POST['type']) === 'save') {
-                SaveTargetLangs::save($_POST);
+                SaveTargetLangs::upload($_POST);
                 echo json_encode('Successfully Saved!');
             } else {
                 ResolveProject::resolve($_POST);
@@ -49,6 +53,6 @@ if (!empty($_GET)) {
         $obj = json_decode($json);
     
         DeleteProject::delete($obj->id);
-        echo json_encode('Project Successfully Deleted!');
+        echo json_encode('Successfully Deleted!');
     };
 };

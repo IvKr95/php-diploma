@@ -1,12 +1,12 @@
 /**
- * Класс Entity - базовый для взаимодействия с сервером.
- * Имеет свойство URL, равно пустой строке.
- * Имеет свойство HOST, равно 'http://ivkr95.000webhostapp.com/diploma'.
+ * Entity class - a basic to communicate with a server.
+ * Has URL property equal to an empty string.
+ * Has HOST property equal to '..'.
  * */
 class Entity {
 
     /**
-     * Запрашивает с сервера список проектов.
+     * Requests a list of projects.
      * */
     static list (data, callback = f => f) {
       return createRequest({
@@ -25,7 +25,7 @@ class Entity {
     }
   
     /**
-     * Создаёт заявку на перевод
+     * Creates a new project.
      * */
     static create (data, callback = f => f) {
       return createRequest({
@@ -44,7 +44,8 @@ class Entity {
     }
   
     /**
-     * Получает информацию о переводчике или проекте
+     * Gets the information about an interpreter(-s)
+     * or a project.
      * */
     static get (data, callback = f => f) {
       return createRequest({
@@ -63,7 +64,8 @@ class Entity {
     }
   
     /**
-     * Обновляет информацию о проекте или переводчике
+     * Updates the info of a project
+     * or an interpreter.
      * */
     static update (data, callback = f => f) {
       return createRequest({
@@ -82,7 +84,7 @@ class Entity {
     }
   
     /**
-     * Удаляет информацию о проекте
+     * Deletes a project.
      * */
     static remove (id, callback = f => f) {
       const data = JSON.stringify({
@@ -107,4 +109,4 @@ class Entity {
   }
   
 Entity.URL = '';
-Entity.HOST = 'http://ivkr95.000webhostapp.com/diploma';
+Entity.HOST = '..';

@@ -8,13 +8,13 @@ function isValid($users)
     $pass = trim($_POST['password']);
 
     if (empty($email) || empty($pass)) {
-        header('Location: ./forms/login.php?error=emptyfields');
+        header('Location: ./diploma/pages/login.html?error=emptyfields');
     } elseif (array_key_exists($email, $users) && $users[$email] === $pass) {
         preg_match('/^\w+/', $email, $matches);
         header('HTTP/1.1 200 OK'); 
         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/diploma/pages/' . $matches[0] . '.php');
     } else {
-        header('Location: ./forms/login.php?error=wrong_email_or_password');
+        header('Location: ./diploma/pages/login.html?error=wrong_email_or_password');
     };
     exit();
 };

@@ -1,15 +1,17 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
+session_start();
 
 require_once './config/Config.php';
 require_once './autoload.php';
 
-if (isset($_GET['interpreter'])) {
-    $obj = new ProjectsPage();
-    $obj->filterByInterpreter($_GET['interpreter']);
+if ($_SESSION['role'] === 'interpreter') {
+    $obj = new ProjectsPage($_SESSION['role']);
+    $obj->filterByInterpreter($_SESSION['name']);
 } else {
-    $obj = new ProjectsPage();
+    $obj = new ProjectsPage($_SESSION['role']);
 };
 $obj->getProjects();
 unset($obj);

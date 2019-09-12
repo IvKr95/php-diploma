@@ -1,28 +1,28 @@
 [
     {
-        "name": "Сидорова Сидора",
+        "name": "\u0421\u0438\u0434\u043e\u0440\u043e\u0432\u0430 \u0421\u0438\u0434\u043e\u0440\u0430",
         "id": 1,
         "knowledge": [
             "RU-EN"
         ],
-        "isFree": true
+        "projectsInProgress": 0
     },
     {
-        "name": "Петрович Петр",
+        "name": "\u041f\u0435\u0442\u0440\u043e\u0432\u0438\u0447 \u041f\u0435\u0442\u0440",
         "id": 2,
         "knowledge": [
             "RU-EN",
             "RU-FR"
         ],
-        "isFree": true
+        "projectsInProgress": 1
     },
     {
-        "name": "Иванов Иван",
+        "name": "\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d",
         "id": 3,
         "knowledge": [
             "RU-DE",
             "RU-IT"
         ],
-        "isFree": true
+        "projectsInProgress": 0
     }
 ]

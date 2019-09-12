@@ -5,7 +5,7 @@
  * */
 class TranslateProjectForm extends AsyncForm {
     /**
-     * Вызывает родительский конструктор
+     * Calls the parent's constructor
      * */
     constructor (element) {
       super(element);
@@ -31,7 +31,7 @@ class TranslateProjectForm extends AsyncForm {
         html += 
                 `<div class="form-group">
                   <span class="bold">${targetLang}</span>
-                  <textarea id="${targetLang.toLowerCase()}" name="target-lang-text[${targetLang.toLowerCase()}]" class="form-control target-lang_text" cols="80" rows="5"></textarea>
+                  <textarea id="${targetLang.toLowerCase()}" name="target-lang-text[${targetLang.toLowerCase()}]" class="form-control target-lang_text"></textarea>
                 </div>`;
       });
       this.element.querySelector('.target-lang_holder').innerHTML = html;
@@ -43,9 +43,8 @@ class TranslateProjectForm extends AsyncForm {
       };
     }
     /**
-     * . 
-     * По успешному результату сбрасывает форму 
-     * и закрывает окно, в котором находится форма
+     * Upon success resets a form
+     * and closes the window with a form
      * */
     onSubmit (options) {
       Project.update(options, ( e, response ) => {

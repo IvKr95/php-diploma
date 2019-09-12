@@ -12,7 +12,6 @@ class CheckProjectForm extends AsyncForm {
     }
   
     update (id, data) {
-      console.log('check');
       this.updateFields(id, data);
       this.updateHtml(data['target-lang'], data['target-lang-text']);
     }
