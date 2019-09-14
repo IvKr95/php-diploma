@@ -12,10 +12,10 @@ class GetData extends Project
     /**
      * Gets the project's data
      * @param string $projectId
-     * @uses FILE_NAME
-     * @return string 
+     * @uses self::FILE_NAME
+     * @return void 
      */
-    public static function getProjectData(string $projectId): string
+    public static function getProjectData(string $projectId): void
     {
         $modelJson = new JsonFileAccessModel(self::FILE_NAME);
         $projects = $modelJson->readJson();

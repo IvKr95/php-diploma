@@ -1,7 +1,7 @@
 /**
  * ProjectPage class manages 
- * the projects-rendering page
- * of a certain user
+ * the project-rendering
+ * of the user
  * */
 class ProjectsPage {
     /**
@@ -79,13 +79,14 @@ class ProjectsPage {
           if (mode === 'edit') {
 
             [modal, form] = [App.getModal('editProject'), App.getForm('editProjectForm')];
+            
 
           } else if (mode === 'translate') {
 
             [modal, form] = [App.getModal('translateProject'), App.getForm('translateProjectForm')];
 
           } else if (mode === 'check') {
-            
+             
             [modal, form] = [App.getModal('checkProject'), App.getForm('checkProjectForm')];
           };
 

@@ -1,10 +1,6 @@
 <?php
 
 session_start();
-define('MANAGER', 'Manager');
-
-$_SESSION['role'] = 'manager';
-$_SESSION['name'] = MANAGER;
 
 ?>
 
@@ -52,7 +48,7 @@ $_SESSION['name'] = MANAGER;
                         <img src="../vendor/robot.png" width="160" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p class="user-name"><?= MANAGER ?></p>
+                        <p class="user-name"><?= $_SESSION['name'] ?></p>
                         <a href="#">
                             <i class="fa fa-circle text-success"></i> Online
                         </a>
@@ -232,9 +228,6 @@ $_SESSION['name'] = MANAGER;
                         <div class="form-group">
                             <label for="assignment">Ответственный:</label>
                             <select class="form-control assignment" name="assignment" id="assignment" required>
-                                <option class="assignee" value="Сидорова Сидора">Сидорова Сидора</option>
-                                <option class="assignee" value="Петрович Петр">Петрович Петр</option>
-                                <option class="assignee" value="Иванов Иван">Иванов Иван</option>
                             </select>
                         </div>
                         <div class="form-group">

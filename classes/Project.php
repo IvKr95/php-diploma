@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Project is the main class
+ * Project is the base class
  * that handles the creation of projects
  */
 
 class Project
 {
-
     /**
      * @var array $projectData The array of data of a project
      * @var int $projectId The random id of a project
@@ -60,11 +59,10 @@ class Project
     }
 
     /**
-     * A private method that assigns a random int
+     * Assigns a random int
      * to $this->projectId
-     * @uses projectId
-     * @uses PROJECT_NUM_MIN
-     * @uses PROJECT_NUM_MAX
+     * @uses self::PROJECT_NUM_MIN
+     * @uses self::PROJECT_NUM_MAX
      * @return void
      */
     private function getProjectId(): void
@@ -74,9 +72,8 @@ class Project
 
     /**
      * Sets the name of a project
-     * @uses projectName
-     * @uses PROJECT_STRING
-     * @uses projectId
+     * @uses self::PROJECT_STRING
+     * @uses int $this->projectId
      * @return void
      */
     private function setProjectName(): void
@@ -87,8 +84,8 @@ class Project
     /**
      * Formattes the data array of a project
      * @param array $projectData
-     * @uses STATUS_KEY
-     * @uses PROJECT_STATUS_NEW
+     * @uses self::STATUS_KEY
+     * @uses self::PROJECT_STATUS_NEW
      * @return void
      */
     private function formateProject(array $projectData): void
@@ -99,8 +96,8 @@ class Project
 
     /**
      * Saves a project
-     * @uses method $this->saveJson()
-     * @uses method $this->saveTxt()
+     * @uses method saveJson()
+     * @uses method saveTxt()
      * @return void
      */
     public function save(): void
@@ -112,9 +109,9 @@ class Project
     /**
      * Saves the data of a project
      * as a json file
-     * @uses FILE_NAME
-     * @uses projectName
-     * @uses projectData
+     * @uses self::FILE_NAME
+     * @uses string $this->projectName
+     * @uses array $this->projectData
      * @return void
      */
     private function saveJson(): void
@@ -127,9 +124,9 @@ class Project
 
     /**
      * Saves the text of a project
-     * @uses dirName
-     * @uses projectName
-     * @uses initLangText
+     * @uses string $this->dirName
+     * @uses string $this->projectName
+     * @uses string $this->initLangText
      * @return void
      */
     private function saveTxt(): void
@@ -138,7 +135,12 @@ class Project
         $modelTxt->write($this->initLangText);
     }
 
-
+    /**
+     * Increases the number of
+     * the interpreter's projects by one
+     * @param string $assignee
+     * @return void
+     */
     private function incCounter(string $assignee): void
     {
         $modelJson = new JsonFileAccessModel('interpreters');

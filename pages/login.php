@@ -9,9 +9,20 @@
     <title>Sign in</title>
 </head>
 <body class="text-center">
-    <form enctype="multipart/form-data" class="form-signin" action="http://ivkr95.000webhostapp.com/diploma/login.php" method="post" name="login">
+           
+    <form enctype="multipart/form-data" class="form-signin" action="../login.php" method="post" name="login">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
+        <?php
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] === 'emptyfields') {
+                    echo '<p class="text-danger">Fill in all fields!</p>';
+                } elseif ($_GET['error'] === 'nouser') {
+                    echo '<p class="text-danger">User Not Exist</p>';
+                } elseif ($_GET['error'] === 'wrongpwd') {
+                    echo '<p class="text-danger">Wrong Password</p>';
+                };
+            };
+        ?>
         <div class="form-group email">
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>

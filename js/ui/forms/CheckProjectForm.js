@@ -30,7 +30,7 @@ class CheckProjectForm extends AsyncForm {
         html += 
                 `<div class="form-group">
                   <span class="bold">${targetLang}</span>
-                  <textarea id="${targetLang.toLowerCase()}" class="form-control target-lang_text" cols="80" rows="5" readonly>${targetLangTxts[targetLang.toLowerCase()]}</textarea>
+                  <textarea id="${targetLang.toLowerCase()}" class="form-control target-lang_text" readonly>${targetLangTxts[targetLang.toLowerCase()]}</textarea>
                 </div>`;
       });
       this.element.querySelector('.target-lang_holder').innerHTML = html;

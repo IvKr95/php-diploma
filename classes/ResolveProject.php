@@ -13,8 +13,8 @@ class ResolveProject extends Project
      * Changes the project's state
      * to resolved by its data
      * @param array $data
-     * @uses FILE_NAME
-     * @uses PROJECT_STATUS_RESOLVED
+     * @uses self::FILE_NAME
+     * @uses self::PROJECT_STATUS_RESOLVED
      * @return void
      */
     public static function resolve(array $data): void

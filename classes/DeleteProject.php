@@ -10,9 +10,8 @@
 class DeleteProject extends Project
 {
     /**
-     * Public static method 
-     * which deletes a project
-     * @param $projectId
+     * Deletes a project
+     * @param string $projectId
      * @uses deleteJson()
      * @uses deleteTxt()
      * @return void
@@ -26,7 +25,7 @@ class DeleteProject extends Project
     /**
      * Deletes the json data
      * of a project by its id
-     * @param $projectId
+     * @param string $projectId
      * @uses FILE_NAME
      * @return void
      */
@@ -44,7 +43,7 @@ class DeleteProject extends Project
     /**
      * Deletes the text 
      * of a project by its id
-     * @param $projectId
+     * @param string $projectId
      * @return void
      */
     private static function deleteTxt(string $projectId): void
@@ -56,6 +55,12 @@ class DeleteProject extends Project
         };
     }
 
+    /**
+     * Dicrease the number of
+     * the interpreter's projects by one
+     * @param string $assignee
+     * @return void
+     */
     private function dicCounter(string $assignee): void
     {
         $modelJson = new JsonFileAccessModel('interpreters');
@@ -63,7 +68,11 @@ class DeleteProject extends Project
         
         foreach ($content as $key => $value) {
             if($value->name === $assignee) {
-                $value->projectsInProgress -= 1;
+                if ($value->projectsInProgress === 0) {
+                    break;
+                } else {
+                    $value->projectsInProgress -= 1;
+                };
                 break;
             };
         };

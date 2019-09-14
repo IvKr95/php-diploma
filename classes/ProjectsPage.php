@@ -49,7 +49,8 @@ class ProjectsPage
 
             if ($html === '') {
                 echo json_encode(
-                    '<p>Проектов на данные момент нет.Нажмите кнопку \'Create new\' для создания нового проекта.</p>');
+                    '<p>Hello, good sir! No projects yet, but you may press the <b>Create New</b> button
+                    to create a new one!</p>');
             } else {
                 echo json_encode($html);
             };
@@ -74,7 +75,7 @@ class ProjectsPage
             };
             if ($html === '') {
                 echo json_encode(
-                    '<p>Доступных проектов, на данные момент, пока нет.</p>');
+                    '<p>Whoopsie!There are not available projects yet:(</p>');
             } else {
                 echo json_encode($html);
             };

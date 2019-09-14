@@ -1,6 +1,6 @@
 [
     {
-        "name": "\u0421\u0438\u0434\u043e\u0440\u043e\u0432\u0430 \u0421\u0438\u0434\u043e\u0440\u0430",
+        "name": "Petrovich Petr",
         "id": 1,
         "knowledge": [
             "RU-EN"
@@ -8,16 +8,16 @@
         "projectsInProgress": 0
     },
     {
-        "name": "\u041f\u0435\u0442\u0440\u043e\u0432\u0438\u0447 \u041f\u0435\u0442\u0440",
+        "name": "Sidorova Sidora",
         "id": 2,
         "knowledge": [
             "RU-EN",
             "RU-FR"
         ],
-        "projectsInProgress": 1
+        "projectsInProgress": 0
     },
     {
-        "name": "\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d",
+        "name": "Ivanov Ivan",
         "id": 3,
         "knowledge": [
             "RU-DE",

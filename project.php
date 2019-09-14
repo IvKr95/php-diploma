@@ -1,6 +1,5 @@
 <?php
 
-
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 
@@ -22,8 +21,6 @@ if (!empty($_GET)) {
             unset($_POST['action']);
             $project = new Project($_POST);
             $project->save();
-
-            
         
             echo json_encode('Successfully Created!');
 

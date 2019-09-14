@@ -112,5 +112,5 @@ textarea {
 
 .modal-footer {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }

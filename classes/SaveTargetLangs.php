@@ -12,10 +12,11 @@ class SaveTargetLangs extends Project
     /**
      * Uploads target langs
      * @param array $data
-     * @uses saveTargetLangsJson()
-     * @uses saveTargetLangsTxts()
+     * @uses method saveTargetLangsJson()
+     * @uses method saveTargetLangsTxts()
+     * @return void
      */
-    public static function upload(array $data)
+    public static function upload(array $data): void
     {
         self::saveTargetLangsJson($data);
         self::saveTargetLangsTxts($data);
@@ -25,7 +26,7 @@ class SaveTargetLangs extends Project
      * Saves target langs to
      * the project's .json file
      * @param array $data
-     * @uses FILE_NAME
+     * @uses string self::FILE_NAME
      * @return void
      */
     private static function saveTargetLangsJson(array $data): void
@@ -45,7 +46,7 @@ class SaveTargetLangs extends Project
     /**
      * Saves target langs texts
      * to .txt files with identical names
-     * @param array @data
+     * @param array $data
      * @return void
      */
     private static function saveTargetLangsTxts(array $data): void

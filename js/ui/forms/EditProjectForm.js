@@ -27,8 +27,15 @@ class EditProjectForm extends AsyncForm {
     }
 
     updateAssignee (assignee) {
-        const select = this.element.querySelector('.assignment'),
-                opts = select.options;
+        const select = this.element.querySelector('.assignment');
+        
+        Interpreters.get({}, (e, response) => {
+            if (e === null && response) {
+                select.innerHTML = response;
+            };
+        });
+        
+        const opts = select.options;
 
         for (let opt, i = 0; opt = opts[i]; i++) {
             if (opt.value === assignee) {

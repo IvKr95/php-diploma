@@ -12,10 +12,11 @@ class UpdateProject extends Project
     /**
      * Updates a project
      * @param array $newData
-     * @uses updateJson()
-     * @uses updateTxt()
+     * @uses method updateJson()
+     * @uses method updateTxt()
+     * @return void
      */
-    public static function update(array $newData)
+    public static function update(array $newData): void
     {
         self::updateJson($newData);
         self::updateTxt($newData);
@@ -25,7 +26,7 @@ class UpdateProject extends Project
      * Updates the json of
      * a project
      * @param array $data
-     * @uses FILE_NAME
+     * @uses string self::FILE_NAME
      * @return void
      */
     private static function updateJson(array $data): void

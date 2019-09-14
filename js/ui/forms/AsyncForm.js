@@ -1,6 +1,6 @@
 /**
  * AsyncForm class manages all the forms
- * of the app, which are submitted with ajax.
+ * of the app, which are to be submitted via ajax.
  * */
 class AsyncForm {
   /** 
