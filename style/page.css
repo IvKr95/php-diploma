@@ -70,16 +70,6 @@ textarea {
     flex-direction: column;
 }
 
-.btns {
-    display: flex;
-    flex-direction: column;
-    min-width: 110px;
-}
-
-.btn {
-    border-radius: 10px;
-}
-
 .list-item_info {
     display: flex;
     flex-direction: column;
@@ -106,11 +96,6 @@ textarea {
     overflow-y: auto;
 }
 
-.modal-content {
-    color: #616161;
-}
-
 .modal-footer {
     display: flex;
-    flex-direction: row;
 }

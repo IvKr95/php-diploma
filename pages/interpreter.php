@@ -1,106 +1,8 @@
 <?php
-
-session_start();
-
+    require_once './header.php';
+    require_once './sidebar.php';
+    require_once './main.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
-          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="../vendor/AdminLTE.css">
-    <link rel="stylesheet" href="../vendor/all-skins.css">
-    <link rel="stylesheet" href="../style/interpreter.css">
-    <title>Interpreter Interface</title>
-</head>
-<body class="skin-blue sidebar-mini app">
-    <div class="wrapper">
-        <header class="main-header">
-            <a href="" class="logo">
-                <span class="logo-mini"><b>T</b>B</span>
-                <span class="logo-lg"><b>Translation</b>Bureau</span>
-            </a>
-            <nav class="navbar navbar-static-top">  
-                <a href="#" class="sidebar-toggle visible-xs" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-            </nav>
-        </header>
-        <aside class="main-sidebar">
-            <section class="sidebar">
-
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="../vendor/robot.png" width="160" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p class="user-name"><?= $_SESSION['name'] ?></p>
-                        <a href="#">
-                            <i class="fa fa-circle text-success"></i> Online
-                        </a>
-                    </div>
-                </div>
-
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">
-                        Sort by
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-btn all" role="button">
-                            <span>All</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-btn new" role="button">
-                            <span>New</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-btn resolved" role="button">
-                            <span>Resolved</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-btn rejected" role="button">
-                            <span>Rejected</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-btn done" role="button">
-                            <span>Done</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="sidebar-menu">
-                    <li class="header">
-                        <button type="button" class="logout btn btn-danger">Log out</button>
-                    </li>
-                </ul>
-            </section>
-        </aside>
-        <main class="content-wrapper">
-            <section class="content">
-                <ul class="projects-list interpreter">
-
-                </ul>
-            </section>
-        </main>
-    </div>
 
     <div class="modal" id="modal-translate">
         <div class="modal-dialog">
@@ -168,7 +70,6 @@ session_start();
 
     <script src="../js/ui/Sidebar.js"></script>
     <script src="../js/App.js"></script>
-    <script src="../script.js"></script>
 
     <script>
         App.init();
