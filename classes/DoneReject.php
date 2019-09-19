@@ -30,25 +30,4 @@ class DoneReject extends Project
 
         $modelJson->writeJson($projects);
     }
-
-    /**
-     * Dicrease the number of
-     * the interpreter's projects by one
-     * @param string $assignee
-     * @return void
-     */
-    private function dicCounter(string $assignee): void
-    {
-        $modelJson = new JsonFileAccessModel('interpreters');
-        $content = $modelJson->readJson();
-        
-        foreach ($content as $key => $value) {
-            if($value->name === $assignee) {
-                $value->projectsInProgress -= 1;
-                break;
-            };
-        };
-
-        $modelJson->writeJson($content); 
-    }
 }

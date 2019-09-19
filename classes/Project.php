@@ -141,7 +141,7 @@ class Project
      * @param string $assignee
      * @return void
      */
-    private function incCounter(string $assignee): void
+    protected static function incCounter(string $assignee): void
     {
         $modelJson = new JsonFileAccessModel('interpreters');
         $content = $modelJson->readJson();
@@ -149,6 +149,31 @@ class Project
         foreach ($content as $key => $value) {
             if($value->name === $assignee) {
                 $value->projectsInProgress += 1;
+                break;
+            };
+        };
+
+        $modelJson->writeJson($content); 
+    }
+
+    /**
+     * Dicrease the number of
+     * the interpreter's projects by one
+     * @param string $assignee
+     * @return void
+     */
+    protected static function dicCounter(string $assignee): void
+    {
+        $modelJson = new JsonFileAccessModel('interpreters');
+        $content = $modelJson->readJson();
+        
+        foreach ($content as $key => $value) {
+            if($value->name === $assignee) {
+                if ($value->projectsInProgress === 0) {
+                    break;
+                } else {
+                    $value->projectsInProgress -= 1;
+                };
                 break;
             };
         };

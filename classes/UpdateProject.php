@@ -37,7 +37,12 @@ class UpdateProject extends Project
         foreach ($projects as $id => $project) {
             if ($id === $data['project-id']) {
                 unset($data['project-id']);
+                if ($projects->{$id}->assignment !== $data['assignment']) {
+                    self::dicCounter($projects->{$id}->assignment);
+                    self::incCounter($data['assignment']);
+                };
                 $projects->{$id} = $data;
+                
                 break;
             };
         };

@@ -32,17 +32,17 @@ class EditProjectForm extends AsyncForm {
         Interpreters.get({}, (e, response) => {
             if (e === null && response) {
                 select.innerHTML = response;
+
+                const opts = select.options;
+        
+                for (let opt, i = 0; opt = opts[i]; i++) {
+                    if (opt.value === assignee) {
+                        select.selectedIndex = i;
+                        break;
+                    };
+                };
             };
         });
-        
-        const opts = select.options;
-
-        for (let opt, i = 0; opt = opts[i]; i++) {
-            if (opt.value === assignee) {
-                select.selectedIndex = i;
-                break;
-            };
-        };
     }
 
     updateRadios (initLang) {
@@ -60,7 +60,7 @@ class EditProjectForm extends AsyncForm {
             targetLang.includes(c.value) ? c.checked = true : c.checked = false;
         });
     }
-  
+    
     /**
      * Редактирует проект с помощью Project.update. 
      * По успешному результату вызывает App.update(),

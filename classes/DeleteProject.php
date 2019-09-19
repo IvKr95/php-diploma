@@ -54,29 +54,4 @@ class DeleteProject extends Project
             echo $e->getMessage();
         };
     }
-
-    /**
-     * Dicrease the number of
-     * the interpreter's projects by one
-     * @param string $assignee
-     * @return void
-     */
-    private function dicCounter(string $assignee): void
-    {
-        $modelJson = new JsonFileAccessModel('interpreters');
-        $content = $modelJson->readJson();
-        
-        foreach ($content as $key => $value) {
-            if($value->name === $assignee) {
-                if ($value->projectsInProgress === 0) {
-                    break;
-                } else {
-                    $value->projectsInProgress -= 1;
-                };
-                break;
-            };
-        };
-
-        $modelJson->writeJson($content); 
-    }
 }
