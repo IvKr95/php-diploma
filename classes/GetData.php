@@ -19,11 +19,6 @@ class GetData extends Project
     {
         $modelJson = new JsonFileAccessModel(self::FILE_NAME);
         $projects = $modelJson->readJson();
-
-        foreach ($projects as $id => $project) {
-            if ($id === $projectId) {
-                echo json_encode($projects->{$projectId});
-            };
-        };
+        echo json_encode($projects->{$projectId});
     }
 }

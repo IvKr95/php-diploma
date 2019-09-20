@@ -22,13 +22,9 @@ class ResolveProject extends Project
         $modelJson = new JsonFileAccessModel(self::FILE_NAME);
         $projects = $modelJson->readJson();
 
-        foreach ($projects as $id => $project) {
-            if ($id === $data['project-id']) {
-                $projects->{$id}->{'target-lang-text'} = $data['target-lang-text'];
-                $projects->{$id}->status = self::PROJECT_STATUS_RESOLVED;
-                break;
-            };
-        };
+        $projects->{$data['project-id']}->{'target-lang-text'} = $data['target-lang-text'];
+        $projects->{$data['project-id']}->status = self::PROJECT_STATUS_RESOLVED;
+                
         $modelJson->writeJson($projects);
     }
 }

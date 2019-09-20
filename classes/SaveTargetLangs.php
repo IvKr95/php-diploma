@@ -33,13 +33,13 @@ class SaveTargetLangs extends Project
     {
         $modelJson = new JsonFileAccessModel(self::FILE_NAME);
         $projects = $modelJson->readJson();
-
-        foreach ($projects as $id => $project) {
+        
+        foreach ($projects as $id => $value) {
             if ($id === $data['project-id']) {
-                $projects->{$id}->{'target-lang-text'} = $data['target-lang-text'];
+                $value->{'target-lang-text'} = $data['target-lang-text'];
                 break;
             };
-        };
+        };  
         $modelJson->writeJson($projects);
     }
 

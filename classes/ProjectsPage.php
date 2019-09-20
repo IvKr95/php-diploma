@@ -2,9 +2,9 @@
 
 class ProjectsPage
 {
-    private $modelJson;
-    private $projects;
-    private $role; 
+    private $modelJson,
+            $projects,
+            $role; 
 
     const JSON_FILE = 'projects';
 

@@ -37,6 +37,7 @@ if (!empty($_GET)) {
                 SaveTargetLangs::upload($_POST);
                 echo json_encode('Successfully Saved!');
             } else {
+                SaveTargetLangs::upload($_POST);
                 ResolveProject::resolve($_POST);
                 echo json_encode('Successfully Resolved!');
             };
